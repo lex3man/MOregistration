@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
 import { loginRequest } from "./features/login-request";
+import { InvisibleCaptcha } from "./features/capcha";
 
 export function RegForm() {
   const [login, setLogin] = useState("");
@@ -154,6 +155,8 @@ export function RegForm() {
           )}
         </InputGroupAddon>
       </InputGroup>
+
+      <InvisibleCaptcha />
 
       <Button type="submit" className="w-full" onClick={handleSubmit}>
         Зарегистрироваться
