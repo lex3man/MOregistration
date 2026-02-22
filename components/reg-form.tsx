@@ -20,7 +20,11 @@ import { toast } from "sonner";
 import { loginRequest } from "./features/login-request";
 import { InvisibleCaptcha } from "./features/capcha";
 
-export function RegForm() {
+interface Props {
+  completeSetter: (s: boolean) => void;
+}
+
+export function RegForm(props: Props) {
   const [login, setLogin] = useState("");
   const [loginChecked, setLoginChecked] = useState(false);
   const [email, setEmail] = useState("");
@@ -78,18 +82,43 @@ export function RegForm() {
     }
   }, [name]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (checked) {
-      toast.success("Ваш запрос отправлен");
-      console.log(name, email, login, phone);
-      console.log("submit");
+      const request = {
+        "name": name,
+        "email": email,
+        "login": login,
+        "phone": phone
+      }
+      const r = await fetch("/api/registration", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(request)
+      })
+      if (r.status === 200) {
+        toast.success("Вы зарегистрированны, доступ отправлен на указанный вами email");
+        props.completeSetter(true)
+      } else {
+        toast.error("При регистрации возникла ошибка")
+        console.log(await r.json())
+      }
+      
     } else {
-      toast.error("Пожалуйста, проверьте все поля");
+      if (!loginChecked) {
+        toast.error("Этот логин уже занят! Выберите другой")
+      } else {
+        toast.error("Пожалуйста, проверьте все поля");
+      }
     }
   };
 
   return (
     <div className="grid w-full max-w-sm gap-6">
+      <p className="text-center text-lg text-zinc-600 dark:text-zinc-400">
+        Для регистрации заполнение всех полей обязательно
+      </p>
       <InputGroup>
         <InputGroupInput
           placeholder="Ваше имя"
@@ -173,6 +202,7 @@ export function RegForm() {
       <Button type="submit" className="w-full" onClick={handleSubmit}>
         Зарегистрироваться
       </Button>
+
     </div>
   );
 }

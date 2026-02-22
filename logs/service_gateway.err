@@ -1,0 +1,160 @@
+2026-02-17 20:56:57 412: ⨯ Failed to start server
+2026-02-17 20:56:57 415: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:56:57 415:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:56:57 415:     at new Promise (<anonymous>) {
+2026-02-17 20:56:57 415:   code: 'EACCES',
+2026-02-17 20:56:57 415:   errno: -4092,
+2026-02-17 20:56:57 415:   syscall: 'listen',
+2026-02-17 20:56:57 415:   address: '0.0.0.0',
+2026-02-17 20:56:57 415:   port: 80
+2026-02-17 20:56:57 415: }
+2026-02-17 20:56:58 203: ⨯ Failed to start server
+2026-02-17 20:56:58 206: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:56:58 206:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:56:58 206:     at new Promise (<anonymous>) {
+2026-02-17 20:56:58 206:   code: 'EACCES',
+2026-02-17 20:56:58 206:   errno: -4092,
+2026-02-17 20:56:58 206:   syscall: 'listen',
+2026-02-17 20:56:58 206:   address: '0.0.0.0',
+2026-02-17 20:56:58 206:   port: 80
+2026-02-17 20:56:58 206: }
+2026-02-17 20:56:58 960: ⨯ Failed to start server
+2026-02-17 20:56:58 963: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:56:58 963:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:56:58 963:     at new Promise (<anonymous>) {
+2026-02-17 20:56:58 963:   code: 'EACCES',
+2026-02-17 20:56:58 963:   errno: -4092,
+2026-02-17 20:56:58 963:   syscall: 'listen',
+2026-02-17 20:56:58 963:   address: '0.0.0.0',
+2026-02-17 20:56:58 963:   port: 80
+2026-02-17 20:56:58 963: }
+2026-02-17 20:56:59 709: ⨯ Failed to start server
+2026-02-17 20:56:59 712: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:56:59 712:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:56:59 712:     at new Promise (<anonymous>) {
+2026-02-17 20:56:59 712:   code: 'EACCES',
+2026-02-17 20:56:59 712:   errno: -4092,
+2026-02-17 20:56:59 712:   syscall: 'listen',
+2026-02-17 20:56:59 712:   address: '0.0.0.0',
+2026-02-17 20:56:59 712:   port: 80
+2026-02-17 20:56:59 712: }
+2026-02-17 20:57:00 458: ⨯ Failed to start server
+2026-02-17 20:57:00 462: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:00 462:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:00 462:     at new Promise (<anonymous>) {
+2026-02-17 20:57:00 462:   code: 'EACCES',
+2026-02-17 20:57:00 462:   errno: -4092,
+2026-02-17 20:57:00 462:   syscall: 'listen',
+2026-02-17 20:57:00 462:   address: '0.0.0.0',
+2026-02-17 20:57:00 462:   port: 80
+2026-02-17 20:57:00 462: }
+2026-02-17 20:57:01 199: ⨯ Failed to start server
+2026-02-17 20:57:01 202: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:01 202:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:01 202:     at new Promise (<anonymous>) {
+2026-02-17 20:57:01 202:   code: 'EACCES',
+2026-02-17 20:57:01 202:   errno: -4092,
+2026-02-17 20:57:01 202:   syscall: 'listen',
+2026-02-17 20:57:01 202:   address: '0.0.0.0',
+2026-02-17 20:57:01 202:   port: 80
+2026-02-17 20:57:01 202: }
+2026-02-17 20:57:01 930: ⨯ Failed to start server
+2026-02-17 20:57:01 934: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:01 934:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:01 934:     at new Promise (<anonymous>) {
+2026-02-17 20:57:01 934:   code: 'EACCES',
+2026-02-17 20:57:01 934:   errno: -4092,
+2026-02-17 20:57:01 934:   syscall: 'listen',
+2026-02-17 20:57:01 934:   address: '0.0.0.0',
+2026-02-17 20:57:01 934:   port: 80
+2026-02-17 20:57:01 934: }
+2026-02-17 20:57:02 648: ⨯ Failed to start server
+2026-02-17 20:57:02 651: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:02 651:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:02 652:     at new Promise (<anonymous>) {
+2026-02-17 20:57:02 652:   code: 'EACCES',
+2026-02-17 20:57:02 652:   errno: -4092,
+2026-02-17 20:57:02 652:   syscall: 'listen',
+2026-02-17 20:57:02 652:   address: '0.0.0.0',
+2026-02-17 20:57:02 652:   port: 80
+2026-02-17 20:57:02 652: }
+2026-02-17 20:57:03 400: ⨯ Failed to start server
+2026-02-17 20:57:03 403: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:03 403:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:03 403:     at new Promise (<anonymous>) {
+2026-02-17 20:57:03 404:   code: 'EACCES',
+2026-02-17 20:57:03 404:   errno: -4092,
+2026-02-17 20:57:03 404:   syscall: 'listen',
+2026-02-17 20:57:03 404:   address: '0.0.0.0',
+2026-02-17 20:57:03 404:   port: 80
+2026-02-17 20:57:03 404: }
+2026-02-17 20:57:04 114: ⨯ Failed to start server
+2026-02-17 20:57:04 118: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:04 118:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:04 118:     at new Promise (<anonymous>) {
+2026-02-17 20:57:04 118:   code: 'EACCES',
+2026-02-17 20:57:04 118:   errno: -4092,
+2026-02-17 20:57:04 118:   syscall: 'listen',
+2026-02-17 20:57:04 118:   address: '0.0.0.0',
+2026-02-17 20:57:04 118:   port: 80
+2026-02-17 20:57:04 118: }
+2026-02-17 20:57:04 851: ⨯ Failed to start server
+2026-02-17 20:57:04 855: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:04 855:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:04 855:     at new Promise (<anonymous>) {
+2026-02-17 20:57:04 855:   code: 'EACCES',
+2026-02-17 20:57:04 855:   errno: -4092,
+2026-02-17 20:57:04 855:   syscall: 'listen',
+2026-02-17 20:57:04 855:   address: '0.0.0.0',
+2026-02-17 20:57:04 855:   port: 80
+2026-02-17 20:57:04 855: }
+2026-02-17 20:57:05 582: ⨯ Failed to start server
+2026-02-17 20:57:05 586: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:05 586:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:05 586:     at new Promise (<anonymous>) {
+2026-02-17 20:57:05 586:   code: 'EACCES',
+2026-02-17 20:57:05 586:   errno: -4092,
+2026-02-17 20:57:05 586:   syscall: 'listen',
+2026-02-17 20:57:05 586:   address: '0.0.0.0',
+2026-02-17 20:57:05 586:   port: 80
+2026-02-17 20:57:05 586: }
+2026-02-17 20:57:06 299: ⨯ Failed to start server
+2026-02-17 20:57:06 302: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:06 302:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:06 302:     at new Promise (<anonymous>) {
+2026-02-17 20:57:06 302:   code: 'EACCES',
+2026-02-17 20:57:06 302:   errno: -4092,
+2026-02-17 20:57:06 302:   syscall: 'listen',
+2026-02-17 20:57:06 302:   address: '0.0.0.0',
+2026-02-17 20:57:06 302:   port: 80
+2026-02-17 20:57:06 302: }
+2026-02-17 20:57:07 029: ⨯ Failed to start server
+2026-02-17 20:57:07 032: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:07 032:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:07 032:     at new Promise (<anonymous>) {
+2026-02-17 20:57:07 032:   code: 'EACCES',
+2026-02-17 20:57:07 032:   errno: -4092,
+2026-02-17 20:57:07 032:   syscall: 'listen',
+2026-02-17 20:57:07 032:   address: '0.0.0.0',
+2026-02-17 20:57:07 032:   port: 80
+2026-02-17 20:57:07 032: }
+2026-02-17 20:57:07 779: ⨯ Failed to start server
+2026-02-17 20:57:07 782: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:07 782:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:07 782:     at new Promise (<anonymous>) {
+2026-02-17 20:57:07 782:   code: 'EACCES',
+2026-02-17 20:57:07 782:   errno: -4092,
+2026-02-17 20:57:07 782:   syscall: 'listen',
+2026-02-17 20:57:07 782:   address: '0.0.0.0',
+2026-02-17 20:57:07 782:   port: 80
+2026-02-17 20:57:07 782: }
+2026-02-17 20:57:08 490: ⨯ Failed to start server
+2026-02-17 20:57:08 493: Error: listen EACCES: permission denied 0.0.0.0:80
+2026-02-17 20:57:08 493:     at <unknown> (Error: listen EACCES: permission denied 0.0.0.0:80)
+2026-02-17 20:57:08 493:     at new Promise (<anonymous>) {
+2026-02-17 20:57:08 493:   code: 'EACCES',
+2026-02-17 20:57:08 493:   errno: -4092,
+2026-02-17 20:57:08 493:   syscall: 'listen',
+2026-02-17 20:57:08 493:   address: '0.0.0.0',
+2026-02-17 20:57:08 493:   port: 80
+2026-02-17 20:57:08 493: }
