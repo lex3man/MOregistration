@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/set-state-in-effect */
-'use client'
+"use client";
 
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/components/ui/input-group"
+} from "@/components/ui/input-group";
 import {
   CheckIcon,
   MailIcon,
@@ -13,7 +13,7 @@ import {
   ShieldIcon,
   UserIcon,
   XIcon,
-} from "lucide-react"
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
@@ -32,58 +32,49 @@ export function RegForm() {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    setChecked(nameChecked && emailChecked && loginChecked && phoneChecked)
+    setChecked(nameChecked && emailChecked && loginChecked && phoneChecked);
   }, [nameChecked, emailChecked, loginChecked, phoneChecked]);
 
   useEffect(() => {
-    if (login) {
-      const available = async () => { return await loginRequest(login) };
-      if (login.length > 2) {
-        available().then(res => {
-          if (res) {
-            setLoginChecked(true);
-          } else {
-            setLoginChecked(false);
-          }
-        })
-      } else {
-        setLoginChecked(false);
-      }
+    const available = async () => {
+      return await loginRequest(login);
+    };
+    if (login.length > 2) {
+      available().then((res) => {
+        if (res) {
+          setLoginChecked(true);
+        } else {
+          setLoginChecked(false);
+        }
+      });
+    } else {
+      setLoginChecked(false);
     }
-
   }, [login]);
 
   useEffect(() => {
-    if (email) {
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      if (re.test(email)) {
-
-        setEmailChecked(true);
-      } else {
-        setEmailChecked(false);
-      }
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(email)) {
+      setEmailChecked(true);
+    } else {
+      setEmailChecked(false);
     }
   }, [email]);
 
   useEffect(() => {
-    if (phone) {
-      if (phone.length > 9) {
-
-        setPhoneChecked(true);
-      } else {
-        setPhoneChecked(false);
-      }
+    if (phone.length > 9) {
+      setPhoneChecked(true);
+    } else {
+      setPhoneChecked(false);
     }
   }, [phone]);
 
   useEffect(() => {
-    if (name) {
-      if (name.length > 1) {
-
-        setNameChecked(true);
-      } else {
-        setNameChecked(false);
-      }
+    if (name.length > 1) {
+      setNameChecked(true);
+    } else {
+      setNameChecked(false);
     }
   }, [name]);
 
@@ -95,13 +86,17 @@ export function RegForm() {
     } else {
       toast.error("Пожалуйста, проверьте все поля");
     }
-  }
+  };
 
   return (
     <div className="grid w-full max-w-sm gap-6">
-
       <InputGroup>
-        <InputGroupInput placeholder="Ваше имя" onChange={(e) => { setName(e.target.value) }} />
+        <InputGroupInput
+          placeholder="Ваше имя"
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
         <InputGroupAddon>
           <UserIcon />
         </InputGroupAddon>
@@ -115,7 +110,13 @@ export function RegForm() {
       </InputGroup>
 
       <InputGroup>
-        <InputGroupInput type="email" placeholder="Ваш email" onChange={(e) => { setEmail(e.target.value) }} />
+        <InputGroupInput
+          type="email"
+          placeholder="Ваш email"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
         <InputGroupAddon>
           <MailIcon />
         </InputGroupAddon>
@@ -129,7 +130,12 @@ export function RegForm() {
       </InputGroup>
 
       <InputGroup>
-        <InputGroupInput placeholder="Логин в системе" onChange={(e) => { setLogin(e.target.value) }} />
+        <InputGroupInput
+          placeholder="Логин в системе"
+          onChange={(e) => {
+            setLogin(e.target.value);
+          }}
+        />
         <InputGroupAddon>
           <ShieldIcon />
         </InputGroupAddon>
@@ -143,7 +149,13 @@ export function RegForm() {
       </InputGroup>
 
       <InputGroup>
-        <InputGroupInput type="tel" placeholder="Номер телефона" onChange={(e) => { setPhone(e.target.value) }} />
+        <InputGroupInput
+          type="tel"
+          placeholder="Номер телефона"
+          onChange={(e) => {
+            setPhone(e.target.value);
+          }}
+        />
         <InputGroupAddon>
           <PhoneIcon />
         </InputGroupAddon>
@@ -162,6 +174,5 @@ export function RegForm() {
         Зарегистрироваться
       </Button>
     </div>
-  )
+  );
 }
-
