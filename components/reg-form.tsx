@@ -6,6 +6,14 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
+import { Checkbox } from "@/components/ui/checkbox"
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field"
 import {
   CheckIcon,
   MailIcon,
@@ -15,6 +23,7 @@ import {
   XIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import Link from "next/link"
 import { Button } from "./ui/button";
 import { toast } from "sonner";
 import { loginRequest } from "./features/login-request";
@@ -27,23 +36,27 @@ interface Props {
 export function RegForm(props: Props) {
   const [login, setLogin] = useState("");
   const [loginChecked, setLoginChecked] = useState(false);
+  let loginStatus = 0;
   const [email, setEmail] = useState("");
   const [emailChecked, setEmailChecked] = useState(false);
   const [phone, setPhone] = useState("");
   const [phoneChecked, setPhoneChecked] = useState(false);
   const [name, setName] = useState("");
   const [nameChecked, setNameChecked] = useState(false);
+  const [ofertaChecked, setOfertaChecked] = useState(false);
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    setChecked(nameChecked && emailChecked && loginChecked && phoneChecked);
-  }, [nameChecked, emailChecked, loginChecked, phoneChecked]);
+    setChecked(nameChecked && emailChecked && loginChecked && phoneChecked && ofertaChecked);
+  }, [nameChecked, emailChecked, loginChecked, phoneChecked, ofertaChecked]);
 
   useEffect(() => {
     const available = async () => {
       return await loginRequest(login);
     };
-    if (login.length > 2) {
+    const re = /^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/;
+    if (login.length > 2 && login.length < 12 && re.test(login)) {
+      loginStatus = 1
       available().then((res) => {
         if (res) {
           setLoginChecked(true);
@@ -67,7 +80,8 @@ export function RegForm(props: Props) {
   }, [email]);
 
   useEffect(() => {
-    if (phone.length > 9) {
+    const re = /^((8|\+374|\+994|\+995|\+375|\+7|\+380|\+38|\+996|\+998|\+993)[\- ]?)?\(?\d{3,5}\)?[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}(([\- ]?\d{1})?[\- ]?\d{1})?$/;
+    if (re.test(phone)) {
       setPhoneChecked(true);
     } else {
       setPhoneChecked(false);
@@ -101,13 +115,15 @@ export function RegForm(props: Props) {
         toast.success("Вы зарегистрированны, доступ отправлен на указанный вами email");
         props.completeSetter(true)
       } else {
-        toast.error("При регистрации возникла ошибка")
-        console.log(await r.json())
+        const message = await r.json()
+        toast.error(`При регистрации возникла ошибка: ${message}`)
+        console.log(message)
       }
       
     } else {
       if (!loginChecked) {
-        toast.error("Этот логин уже занят! Выберите другой")
+        if (loginStatus === 0) { toast.error("Логин должен быть от 3 до 12 символов, содержать только латинские буквы и цифры") }
+        if (loginStatus === 1) { toast.error("Этот логин уже занят! Выберите другой") }
       } else {
         toast.error("Пожалуйста, проверьте все поля");
       }
@@ -199,9 +215,38 @@ export function RegForm(props: Props) {
 
       <InvisibleCaptcha />
 
+      <FieldGroup className="mx-auto w-72">
+        <Field orientation="horizontal">
+          <Checkbox
+            id="terms-checkbox-desc"
+            name="terms-checkbox-desc"
+            checked={ofertaChecked}
+            onClick={() => setOfertaChecked(!ofertaChecked)}
+          />
+          <FieldContent>
+            <FieldLabel htmlFor="terms-checkbox-desc">
+              Я принимаю условия оферты
+            </FieldLabel>
+            <FieldDescription>
+              Поставив галочку, Вы соглашаетесь с условиями <Link href="https://moiofis.ru/docs/oferta.doc" target="_blank">оферты</Link>
+            </FieldDescription>
+          </FieldContent>
+        </Field>
+      </FieldGroup>
+
       <Button type="submit" className="w-full" onClick={handleSubmit}>
         Зарегистрироваться
       </Button>
+
+      <FieldGroup className="mx-auto w-96">
+        <Field orientation="horizontal">
+          <FieldContent>
+            <FieldDescription>
+              После регистрации вам будет предоставлен тестовый доступ ко всем возможностям сервиса «Мой Офис» на 10 дней. По окончании тестового доступа вы можете продолжить работу, используя платный доступ или отказаться от использования. С ценами можно ознакомиться в разделе <Link href="https://moiofis.ru/index.php?r=site/price" target="_blank">цены</Link> 
+            </FieldDescription>
+          </FieldContent>
+        </Field>
+      </FieldGroup>
 
     </div>
   );
