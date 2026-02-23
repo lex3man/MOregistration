@@ -27,12 +27,13 @@ import { Button } from "./ui/button";
 import { toast } from "sonner";
 import { loginRequest } from "./features/login-request";
 import { InvisibleCaptcha } from "./features/capcha";
+import { useDebounce } from "./features/debounce";
 
 interface Props {
   completeSetter: (s: boolean) => void;
 }
 
-export function RegForm(props: Props) {
+export function RegForm(props: Props) {  
   const [login, setLogin] = useState("");
   const [loginChecked, setLoginChecked] = useState(false);
   const [loginStatus, setLoginStatus] = useState(false);
@@ -44,6 +45,7 @@ export function RegForm(props: Props) {
   const [nameChecked, setNameChecked] = useState(false);
   const [ofertaChecked, setOfertaChecked] = useState(false);
   const [checked, setChecked] = useState(false);
+  const debouncedLogin = useDebounce(login, 500);
 
   useEffect(() => {
     setChecked(nameChecked && emailChecked && loginChecked && phoneChecked && ofertaChecked);
@@ -56,18 +58,20 @@ export function RegForm(props: Props) {
     const re = /^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/;
     if (login.length > 2 && login.length < 12 && re.test(login)) {
       setLoginStatus(true)
-      available().then((res) => {
-        if (res) {
-          setLoginChecked(true);
-        } else {
-          setLoginChecked(false);
-        }
-      });
+      if (debouncedLogin.length > 0) {
+        available().then((res) => {
+          if (res) {
+            setLoginChecked(true);
+          } else {
+            setLoginChecked(false);
+          }
+        });
+      }
     } else {
       setLoginStatus(false)
       setLoginChecked(false);
     }
-  }, [login]);
+  }, [login, debouncedLogin]);
 
   useEffect(() => {
     const re =
@@ -80,7 +84,7 @@ export function RegForm(props: Props) {
   }, [email]);
 
   useEffect(() => {
-    const re = /^((8|\+374|\+994|\+995|\+375|\+7|\+380|\+38|\+996|\+998|\+993)[\- ]?)?\(?\d{3,5}\)?[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}[\- ]?\d{1}(([\- ]?\d{1})?[\- ]?\d{1})?$/;
+    const re = /^(?:\+7|8)(?:\(\d{3}\)|\d{3})\d{3}-?\d\d-?\d\d$/;
     if (re.test(phone)) {
       setPhoneChecked(true);
     } else {
@@ -104,22 +108,26 @@ export function RegForm(props: Props) {
         "login": login,
         "phone": phone
       }
-      const r = await fetch("/api/registration", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(request)
-      })
-      if (r.status === 200) {
-        toast.success("Вы зарегистрированны, доступ отправлен на указанный вами email");
-        props.completeSetter(true)
-      } else {
-        const message = await r.json()
-        toast.error(`При регистрации возникла ошибка: ${message}`)
-        console.log(message)
+      try {
+        const r = await fetch("/api/registration", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(request)
+        })
+        if (r.status === 200) {
+          toast.success("Вы зарегистрированны, доступ отправлен на указанный вами email");
+          props.completeSetter(true)
+        } else {
+          const message = await r.json()
+          toast.error(`При регистрации возникла ошибка: ${message}`)
+          console.log(message)
+        }
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Ошибка';
+        toast.error(`При регистрации возникла ошибка: ${message}`);
       }
-      
     } else {
       if (!loginChecked) {
         if (!loginStatus) { 
