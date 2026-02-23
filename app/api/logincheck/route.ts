@@ -24,34 +24,52 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const response = await fetch(BACKEND_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      "method": "checklogin",
-      "params": {
-        "login": login
-      }
+  try {
+    const response = await fetch(BACKEND_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "method": "checklogin",
+        "params": {
+          "login": login
+        }
+      })
+    });
+
+    if (response.status != 200) {
+      return new Response("", {
+        status: 500,
+        headers: {
+            'Content-Type': 'text/plain',
+        },
+      })
+    }
+
+    const res = await response.json();
+
+    if (res.result === true) {
+      return new Response('', {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+      });
+    } else {
+      return new Response('', {
+        status: 201,
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+      });
+    }
+  } catch (error) {
+    return new Response(`${error}`, {
+      status: 500,
+      headers: {
+          'Content-Type': 'text/plain',
+      },
     })
-  });
-
-  const res = await response.json();
-
-  if (res.result === true) {
-    return new Response('', {
-      status: 200,
-      headers: {
-        'Content-Type': 'text/plain',
-      },
-    });
-  } else {
-    return new Response('', {
-      status: 201,
-      headers: {
-        'Content-Type': 'text/plain',
-      },
-    });
   }
 }

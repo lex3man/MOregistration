@@ -25,7 +25,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link"
 import { Button } from "./ui/button";
 import { toast } from "sonner";
-import { loginRequest } from "./features/login-request";
 import { InvisibleCaptcha } from "./features/capcha";
 import { useDebounce } from "./features/debounce";
 
@@ -52,7 +51,10 @@ export function RegForm(props: Props) {
 
   useEffect(() => {
     const available = async () => {
-      return await loginRequest(login);
+      const response = await fetch(`/api/logincheck?login=${login}`);
+      if (response.status === 500) { toast.warning("Ошибка работы сервера! Невозможно проверить уникальность логина"); }
+      if (response.status === 200) { toast.error("Этот логин уже занят! Выберите другой"); }
+      return response.status === 201;
     };
     const re = /^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/;
     if (login.length > 2 && login.length < 12 && re.test(login)) {
@@ -62,7 +64,6 @@ export function RegForm(props: Props) {
             setLoginChecked(true);
           } else {
             setLoginChecked(false);
-            toast.error("Этот логин уже занят! Выберите другой")
           }
         });
       }
