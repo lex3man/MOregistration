@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import {
@@ -238,7 +237,7 @@ export function RegForm(props: Props) {
         </Field>
       </FieldGroup>
 
-      <Button type="submit" className="w-full" onClick={handleSubmit}>
+      <Button type="submit" className="w-full" disabled={!checked} onClick={handleSubmit}>
         Зарегистрироваться
       </Button>
 

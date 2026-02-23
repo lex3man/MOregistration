@@ -1,7 +1,13 @@
 import { InvisibleSmartCaptcha } from '@yandex/smart-captcha';
 import { useCallback, useState } from 'react';
 
+const CAPTCHA_SITEKEY = process.env.NEXT_PUBLIC_CAPTCHA_SITEKEY!;
+
 export const InvisibleCaptcha = () => {
+  if (!CAPTCHA_SITEKEY) {
+    throw new Error('NEXT_PUBLIC_CAPTCHA_SITEKEY is not defined in environment variables');
+  }
+
   const [token, setToken] = useState('');
   const [visible, setVisible] = useState(false);
 
@@ -13,7 +19,7 @@ export const InvisibleCaptcha = () => {
     <>
       <button onClick={handleButtonClick}>Я не робот</button>
       <InvisibleSmartCaptcha
-        sitekey="ysc1_sSIax79ufVwMqLipcOI7T3H7IKKIjw7GONhcesHW311b9392"
+        sitekey={CAPTCHA_SITEKEY}
         onSuccess={setToken}
         onChallengeHidden={handleChallengeHidden}
         visible={visible}
