@@ -36,7 +36,7 @@ interface Props {
 export function RegForm(props: Props) {
   const [login, setLogin] = useState("");
   const [loginChecked, setLoginChecked] = useState(false);
-  let loginStatus = 0;
+  const [loginStatus, setLoginStatus] = useState(false);
   const [email, setEmail] = useState("");
   const [emailChecked, setEmailChecked] = useState(false);
   const [phone, setPhone] = useState("");
@@ -56,7 +56,7 @@ export function RegForm(props: Props) {
     };
     const re = /^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/;
     if (login.length > 2 && login.length < 12 && re.test(login)) {
-      loginStatus = 1
+      setLoginStatus(true)
       available().then((res) => {
         if (res) {
           setLoginChecked(true);
@@ -65,7 +65,7 @@ export function RegForm(props: Props) {
         }
       });
     } else {
-      loginStatus = 0
+      setLoginStatus(false)
       setLoginChecked(false);
     }
   }, [login]);
@@ -123,8 +123,11 @@ export function RegForm(props: Props) {
       
     } else {
       if (!loginChecked) {
-        if (loginStatus === 0) { toast.error("Логин должен быть от 3 до 12 символов, содержать только латинские буквы и цифры") }
-        if (loginStatus === 1) { toast.error("Этот логин уже занят! Выберите другой") }
+        if (!loginStatus) { 
+          toast.error("Логин должен быть от 3 до 12 символов, содержать только латинские буквы и цифры")
+        } else { 
+          toast.error("Этот логин уже занят! Выберите другой")
+        }
       } else {
         toast.error("Пожалуйста, проверьте все поля");
       }
