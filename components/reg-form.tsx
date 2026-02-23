@@ -65,6 +65,7 @@ export function RegForm(props: Props) {
         }
       });
     } else {
+      loginStatus = 0
       setLoginChecked(false);
     }
   }, [login]);
